@@ -2,10 +2,11 @@
 -- Please log an issue at https://github.com/pgadmin-org/pgadmin4/issues/new/choose if you find any bugs, including reproduction steps.
 BEGIN;
 
+
 CREATE TABLE IF NOT EXISTS public."AUTHOR"
 (
     author_key serial NOT NULL,
-    _profile serial,
+    _profile serial NOT NULL,
     joined_at date,
     PRIMARY KEY (author_key)
 );
@@ -13,7 +14,7 @@ CREATE TABLE IF NOT EXISTS public."AUTHOR"
 CREATE TABLE IF NOT EXISTS public."CUSTOMER"
 (
     customer_key serial NOT NULL,
-    _profile serial,
+    _profile serial NOT NULL,
     joined_at date,
     PRIMARY KEY (customer_key)
 );
@@ -35,19 +36,19 @@ CREATE TABLE IF NOT EXISTS public."PROFILE"
     nickname character varying(64) NOT NULL DEFAULT '',
     profession character varying(64) NOT NULL DEFAULT '',
     date_born date NOT NULL,
-    date_death date NOT NULL,
+    date_death date,
     gender character varying(8) NOT NULL DEFAULT 'Male',
-    _contact serial,
-    _birth_place serial,
-    _address serial,
+    _contact serial NOT NULL,
+    _birth_place serial NOT NULL,
+    _address serial NOT NULL,
     PRIMARY KEY (profile_key)
 );
 
 CREATE TABLE IF NOT EXISTS public."PUBLISHER"
 (
     publisher_key serial NOT NULL,
-    _location serial,
-    _contact serial,
+    _location serial NOT NULL,
+    _contact serial NOT NULL,
     year_founded integer NOT NULL DEFAULT 0,
     PRIMARY KEY (publisher_key)
 );
@@ -71,13 +72,14 @@ CREATE TABLE IF NOT EXISTS public."BOOK"
     publication_year integer NOT NULL DEFAULT 0,
     pages integer NOT NULL DEFAULT 0,
     main_price integer NOT NULL DEFAULT 0,
+    _publisher serial NOT NULL,
     PRIMARY KEY (book_key)
 );
 
 CREATE TABLE IF NOT EXISTS public."BOOK_BOUGHT_CUSTOMER"
 (
-    _book serial,
-    _customer serial,
+    _book serial NOT NULL,
+    _customer serial NOT NULL,
     date date NOT NULL,
     price integer NOT NULL DEFAULT 0,
     quantity integer NOT NULL DEFAULT 0
@@ -85,16 +87,16 @@ CREATE TABLE IF NOT EXISTS public."BOOK_BOUGHT_CUSTOMER"
 
 CREATE TABLE IF NOT EXISTS public."BOOK_WRITTEN_AUTHOR"
 (
-    _book serial,
-    _author serial
+    _book serial NOT NULL,
+    _author serial NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public."FRANCHISE"
 (
     franchise_key serial NOT NULL,
-    _owner serial,
-    _location serial,
-    _distributor serial,
+    _owner serial NOT NULL,
+    _location serial NOT NULL,
+    _distributor serial NOT NULL,
     name character varying(64),
     PRIMARY KEY (franchise_key)
 );
@@ -103,8 +105,9 @@ CREATE TABLE IF NOT EXISTS public."TRANSACTION"
 (
     transaction_key serial NOT NULL,
     _discount serial,
-    _franchise serial,
-    _customer serial,
+    _franchise serial NOT NULL,
+    _customer serial NOT NULL,
+    _book serial NOT NULL,
     "timestamp" timestamp without time zone,
     PRIMARY KEY (transaction_key)
 );
@@ -121,9 +124,10 @@ CREATE TABLE IF NOT EXISTS public."DISCOUNT"
 CREATE TABLE IF NOT EXISTS public."EMPLOYEE"
 (
     employee_key serial NOT NULL,
-    _profile serial,
-    _position serial,
+    _profile serial NOT NULL,
+    _position serial NOT NULL,
     recruited_at date,
+    _franchise serial NOT NULL,
     PRIMARY KEY (employee_key)
 );
 
@@ -145,8 +149,8 @@ CREATE TABLE IF NOT EXISTS public."DISTRIBUTOR"
 
 CREATE TABLE IF NOT EXISTS public."CUSTOMER_WISHLIST_BOOK"
 (
-    _customer serial,
-    _book serial
+    _customer serial NOT NULL,
+    _book serial NOT NULL
 );
 
 ALTER TABLE IF EXISTS public."AUTHOR"
@@ -200,6 +204,14 @@ ALTER TABLE IF EXISTS public."PUBLISHER"
 ALTER TABLE IF EXISTS public."PUBLISHER"
     ADD FOREIGN KEY (_contact)
     REFERENCES public."CONTACT" (contact_key) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public."BOOK"
+    ADD FOREIGN KEY (_publisher)
+    REFERENCES public."PUBLISHER" (publisher_key) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
@@ -285,6 +297,14 @@ ALTER TABLE IF EXISTS public."TRANSACTION"
     NOT VALID;
 
 
+ALTER TABLE IF EXISTS public."TRANSACTION"
+    ADD FOREIGN KEY (_book)
+    REFERENCES public."BOOK" (book_key) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
 ALTER TABLE IF EXISTS public."EMPLOYEE"
     ADD FOREIGN KEY (_profile)
     REFERENCES public."PROFILE" (profile_key) MATCH SIMPLE
@@ -296,6 +316,14 @@ ALTER TABLE IF EXISTS public."EMPLOYEE"
 ALTER TABLE IF EXISTS public."EMPLOYEE"
     ADD FOREIGN KEY (_position)
     REFERENCES public."POSITION" (position_key) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public."EMPLOYEE"
+    ADD FOREIGN KEY (_franchise)
+    REFERENCES public."FRANCHISE" (franchise_key) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;

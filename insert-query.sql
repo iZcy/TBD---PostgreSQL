@@ -153,7 +153,7 @@ VALUES
 (13, '2019-12-21'),
 (16, '2020-02-06');
 
-END:
+END;
 
 -- @block
 -- CUSTOMER
@@ -185,35 +185,6 @@ VALUES
 END;
 
 -- @block
--- EMPLOYEE
-BEGIN;
-
-INSERT INTO public."EMPLOYEE" (_profile, _position, recruited_at) 
-VALUES 
-(3, 7, '2021-05-10'),
-(8, 4, '2020-08-15'),
-(12, 9, '2021-03-25'),
-(5, 2, '2020-10-01'),
-(18, 6, '2021-07-20'),
-(9, 8, '2020-11-30'),
-(14, 3, '2021-04-05'),
-(1, 10, '2020-01-15'),
-(17, 1, '2021-09-10'),
-(10, 5, '2020-02-20'),
-(4, 11, '2021-06-30'),
-(20, 7, '2020-03-12'),
-(7, 4, '2021-11-05'),
-(2, 9, '2020-04-18'),
-(13, 2, '2021-08-22'),
-(6, 6, '2020-12-07'),
-(19, 8, '2021-01-25'),
-(16, 3, '2020-05-28'),
-(11, 10, '2021-10-15'),
-(15, 5, '2020-07-01');
-
-ENd;
-
--- @block
 BEGIN;
 
 INSERT INTO public."DISTRIBUTOR" (name, local_price) 
@@ -238,6 +209,64 @@ VALUES
 ('Berkah Bersama', 15000),
 ('Jaya Makmur', 17000),
 ('Maju Sentosa', 15500);
+
+END;
+
+-- @block
+-- FRANCHISE
+BEGIN;
+
+INSERT INTO public."FRANCHISE" (_owner, _location, _distributor, name) 
+VALUES 
+(5, 18, 3, 'Warung Buku Ceria'),
+(10, 7, 14, 'Toko Buku Mutiara'),
+(15, 12, 1, 'Buku Impian'),
+(20, 19, 10, 'Pustaka Abadi'),
+(3, 5, 16, 'Surga Buku'),
+(8, 3, 20, 'Tokobuku Bahagia'),
+(13, 9, 7, 'Buku Ajaib'),
+(18, 17, 4, 'Warung Buku Sejahtera'),
+(1, 2, 15, 'Pustaka Jaya'),
+(6, 16, 9, 'Buku Inspirasi'),
+(11, 11, 6, 'Toko Buku Serba Ada'),
+(16, 13, 11, 'Buku Terang'),
+(4, 6, 18, 'Toko Buku Kreatif'),
+(9, 4, 8, 'Buku Berkah'),
+(14, 1, 17, 'Toko Buku Cerdas'),
+(19, 20, 5, 'Pustaka Bintang'),
+(2, 8, 12, 'Buku Pintar'),
+(7, 14, 19, 'Toko Buku Modern'),
+(12, 10, 2, 'Buku Ilmiah'),
+(17, 15, 13, 'Pustaka Cemerlang');
+
+END;
+
+-- @block
+-- EMPLOYEE
+BEGIN;
+
+INSERT INTO public."EMPLOYEE" (_profile, _position, recruited_at, _franchise) 
+VALUES 
+(3, 7, '2021-05-10', 5),
+(8, 4, '2020-08-15', 10),
+(12, 9, '2021-03-25', 15),
+(5, 2, '2020-10-01', 3),
+(18, 6, '2021-07-20', 17),
+(9, 8, '2020-11-30', 1),
+(14, 3, '2021-04-05', 12),
+(1, 10, '2020-01-15', 7),
+(17, 1, '2021-09-10', 19),
+(10, 5, '2020-02-20', 14),
+(4, 11, '2021-06-30', 16),
+(20, 7, '2020-03-12', 11),
+(7, 4, '2021-11-05', 9),
+(2, 9, '2020-04-18', 4),
+(13, 2, '2021-08-22', 1),
+(6, 6, '2020-12-07', 15),
+(19, 8, '2021-01-25', 5),
+(16, 3, '2020-05-28', 17),
+(11, 10, '2021-10-15', 3),
+(15, 5, '2020-07-01', 16);
 
 END;
 
@@ -274,28 +303,28 @@ END;
 -- BOOK
 BEGIN;
 
-INSERT INTO public."BOOK" (name, publication_year, pages, main_price) 
+INSERT INTO public."BOOK" (name, publication_year, pages, main_price, _publisher) 
 VALUES 
-('Seribu Cerita', 2009, 320, 50000),
-('Raja Gombal', 2016, 280, 45000),
-('Sembilan Wali', 2013, 360, 55000),
-('Pulau Pari', 2018, 400, 60000),
-('Cinta di Kota', 2010, 340, 52000),
-('Pahlawan Malam', 2019, 380, 58000),
-('Kisah Hidupku', 2011, 320, 50000),
-('Mimpi Sejuta', 2017, 420, 62000),
-('Bunga Angin', 2014, 350, 53000),
-('Api Hidup', 2008, 300, 48000),
-('Senja di Pantai', 2015, 400, 60000),
-('Hujan di Hatiku', 2012, 380, 58000),
-('Rindu Tanah Air', 2007, 360, 55000),
-('Dewi Purnama', 2020, 400, 60000),
-('Cahaya Pohon', 2006, 320, 50000),
-('Lautan Kenangan', 2018, 440, 65000),
-('Misteri Gurun', 2010, 340, 52000),
-('Rahasia Hutan', 2014, 380, 58000),
-('Perjalanan Bukit', 2012, 360, 55000),
-('Jelajah Sungai', 2008, 300, 48000);
+('Seribu Cerita', 2009, 320, 50000, 7),
+('Raja Gombal', 2016, 280, 45000, 14),
+('Sembilan Wali', 2013, 360, 55000, 11),
+('Pulau Pari', 2018, 400, 60000, 10),
+('Cinta di Kota', 2010, 340, 52000, 15),
+('Pahlawan Malam', 2019, 380, 58000, 4),
+('Kisah Hidupku', 2011, 320, 50000, 17),
+('Mimpi Sejuta', 2017, 420, 62000, 6),
+('Bunga Angin', 2014, 350, 53000, 7),
+('Api Hidup', 2008, 300, 48000, 8),
+('Senja di Pantai', 2015, 400, 60000, 3),
+('Hujan di Hatiku', 2012, 380, 58000, 2),
+('Rindu Tanah Air', 2007, 360, 55000, 1),
+('Dewi Purnama', 2020, 400, 60000, 13),
+('Cahaya Pohon', 2006, 320, 50000, 11),
+('Lautan Kenangan', 2018, 440, 65000, 16),
+('Misteri Gurun', 2010, 340, 52000, 17),
+('Rahasia Hutan', 2014, 380, 58000, 19),
+('Perjalanan Bukit', 2012, 360, 55000, 18),
+('Jelajah Sungai', 2008, 300, 48000, 20);
 
 END;
 
@@ -329,60 +358,31 @@ VALUES
 END;
 
 -- @block
--- FRANCHISE
-BEGIN;
-
-INSERT INTO public."FRANCHISE" (_owner, _location, _distributor, name) 
-VALUES 
-(5, 18, 3, 'Warung Buku Ceria'),
-(10, 7, 14, 'Toko Buku Mutiara'),
-(15, 12, 1, 'Buku Impian'),
-(20, 19, 10, 'Pustaka Abadi'),
-(3, 5, 16, 'Surga Buku'),
-(8, 3, 20, 'Tokobuku Bahagia'),
-(13, 9, 7, 'Buku Ajaib'),
-(18, 17, 4, 'Warung Buku Sejahtera'),
-(1, 2, 15, 'Pustaka Jaya'),
-(6, 16, 9, 'Buku Inspirasi'),
-(11, 11, 6, 'Toko Buku Serba Ada'),
-(16, 13, 11, 'Buku Terang'),
-(4, 6, 18, 'Toko Buku Kreatif'),
-(9, 4, 8, 'Buku Berkah'),
-(14, 1, 17, 'Toko Buku Cerdas'),
-(19, 20, 5, 'Pustaka Bintang'),
-(2, 8, 12, 'Buku Pintar'),
-(7, 14, 19, 'Toko Buku Modern'),
-(12, 10, 2, 'Buku Ilmiah'),
-(17, 15, 13, 'Pustaka Cemerlang');
-
-END;
-
--- @block
 -- TRANSACTION
 BEGIN;
 
-INSERT INTO public."TRANSACTION" (_discount, _franchise, _customer, "timestamp") 
+INSERT INTO public."TRANSACTION" (_discount, _franchise, _customer, _book, timestamp) 
 VALUES 
-(4, 10, 8, '2024-01-15 08:30:00'),
-(NULL, 5, 15, '2024-02-20 10:45:00'),
-(1, 17, 3, '2024-03-25 14:20:00'),
-(9, 12, 11, '2024-04-10 16:55:00'),
-(NULL, 20, 19, '2024-05-05 12:10:00'),
-(NULL, 8, 1, '2024-06-15 09:25:00'),
-(NULL, 13, 14, '2024-07-20 11:30:00'),
-(8, 2, 6, '2024-08-28 13:40:00'),
-(6, 18, 12, '2024-09-05 15:15:00'),
-(10, 7, 16, '2024-10-10 17:20:00'),
-(11, 15, 4, '2024-11-12 18:45:00'),
-(NULL, 4, 9, '2024-12-17 19:50:00'),
-(NULL, 19, 18, '2025-01-22 20:30:00'),
-(14, 6, 2, '2025-02-25 21:55:00'),
-(15, 1, 17, '2025-03-30 22:40:00'),
-(16, 16, 13, '2025-04-05 23:10:00'),
-(NULL, 3, 7, '2025-05-10 08:30:00'),
-(18, 11, 10, '2025-06-15 09:45:00'),
-(19, 14, 5, '2025-07-20 10:20:00'),
-(NULL, 9, 20, '2025-08-25 11:35:00');
+(4, 10, 8, 14, '2024-01-15 08:30:00'),
+(NULL, 5, 15, 20, '2024-02-20 10:45:00'),
+(1, 17, 3, 3, '2024-03-25 14:20:00'),
+(9, 12, 11, 19, '2024-04-10 16:55:00'),
+(NULL, 20, 19, 10, '2024-05-05 12:10:00'),
+(NULL, 8, 1, 1, '2024-06-15 09:25:00'),
+(NULL, 13, 14, 8, '2024-07-20 11:30:00'),
+(8, 2, 6, 2, '2024-08-28 13:40:00'),
+(6, 18, 12, 12, '2024-09-05 15:15:00'),
+(10, 7, 16, 4, '2024-10-10 17:20:00'),
+(11, 15, 4, 17, '2024-11-12 18:45:00'),
+(NULL, 4, 9, 9, '2024-12-17 19:50:00'),
+(NULL, 19, 18, 18, '2025-01-22 20:30:00'),
+(14, 6, 2, 6, '2025-02-25 21:55:00'),
+(15, 1, 17, 13, '2025-03-30 22:40:00'),
+(16, 16, 13, 5, '2025-04-05 23:10:00'),
+(NULL, 3, 7, 7, '2025-05-10 08:30:00'),
+(18, 11, 10, 11, '2025-06-15 09:45:00'),
+(19, 14, 5, 16, '2025-07-20 10:20:00'),
+(NULL, 9, 20, 15, '2025-08-25 11:35:00');
 
 END;
 
@@ -475,41 +475,5 @@ VALUES
 (18, 2),
 (19, 19),
 (20, 13);
-
-END;
-
--- @block
--- CUSTOMER_WISHLIST_BOOK
-BEGIN;
-
-INSERT INTO public."CUSTOMER_WISHLIST_BOOK" (_customer, _book) 
-VALUES 
-(1, 5),
-(1, 12),
-(2, 17),
-(2, 3),
-(3, 20),
-(4, 9),
-(4, 14),
-(5, 6),
-(5, 11),
-(5, 16),
-(6, 1),
-(7, 18),
-(8, 4),
-(9, 10),
-(10, 15),
-(10, 7),
-(10, 2),
-(11, 19),
-(12, 8),
-(13, 12),
-(14, 3),
-(16, 9),
-(17, 14),
-(17, 6),
-(18, 11),
-(19, 18),
-(20, 4);
 
 END;
