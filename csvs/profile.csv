@@ -1,0 +1,21 @@
+first_name,last_name,position,date_of_birth,hire_date,gender,years_of_experience,employee_id,department_id
+Putri Utami,Putri,Pustakawan,1975-03-15,,Female,5,1,5
+Budi Santoso,Budi,Arsivar,1980-07-20,2005-09-15,Male,10,2,10
+Sri Wijaya,Sri,Pustakawan Referensi,1978-11-10,,Female,15,3,15
+Adi Nugroho,Adi,Pustakawan Akuisisi,1985-05-25,,Male,20,4,20
+Dewi Anggraini,Dewi,Teknisi Perpustakaan,1982-09-30,2010-03-20,Female,3,5,3
+Agus Setiawan,Agus,Koordinator Pinjam-Meminjam Antar Perpustakaan,1976-12-05,,Male,17,6,17
+Siti Rahayu,Rahayu,Petugas Perpustakaan,1979-04-18,,Female,8,7,8
+Rudi Hartono,Rudi,Pustakawan Layanan Digital,1983-08-22,,Male,12,8,12
+Eka Pratiwi,Eka,Pustakawan Anak,1987-01-12,,Female,1,9,1
+Darma Wijaya,Darma,Pustakawan Remaja,1984-06-28,,Male,19,10,19
+Rini Susanti,Rini,Pustakawan Layanan Teknis,1977-10-17,,Female,6,11,6
+Firman Setiawan,Firman,Pustakawan Pengembangan Koleksi,1974-04-03,2019-11-30,Male,14,12,14
+Lia Suryani,Lia,Pustakawan Sistem,1981-11-28,,Female,18,13,18
+Heru Nugroho,Heru,Pustakawan Layanan Instruksional,1989-07-15,,Male,4,14,4
+Maya Rahmawati,Maya,Pustakawan Pengabdian Masyarakat,1986-02-09,,Female,16,15,16
+Rizky Firmansyah,Rizky,Pustakawan Koleksi Khusus,1973-05-20,,Male,11,16,11
+Diana Wulandari,Diana,Manajer Arsip,1970-08-14,,Female,2,17,2
+Hari Santoso,Hari,Direktur Perpustakaan,1972-12-10,,Male,7,18,7
+Sri Wahyuni,Sri,Pustakawan,1971-06-05,,Female,13,19,13
+Yoga Prasetyo,Yoga,Asisten Perpustakaan,1979-09-18,,Male,9,20,9
