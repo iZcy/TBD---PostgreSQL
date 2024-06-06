@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -24,8 +23,8 @@ import {
 } from "../../configs/interfaces";
 import { interfacesBreakdowns } from "../../configs/interfacesBreakdowns";
 
-import { initTransaction } from "@/controllers/testInits";
-import { getPickedTransaction } from "@/controllers/testSetPickers";
+import { initTransaction } from "@/controllers/publicInits";
+import { getPickedTransaction } from "@/controllers/publicSetPickers";
 
 export default function TestPage() {
   const availableTables: string[] = [
