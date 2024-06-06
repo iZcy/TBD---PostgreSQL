@@ -22,10 +22,10 @@ SELECT
             public."DISCOUNT".expire >= public."TRANSACTION".timestamp
             OR
             public."DISCOUNT".value IS NULL
-        THEN public."BOOK".main_price
-        ELSE (1 - public."DISCOUNT".value) * public."BOOK".main_price
+        THEN public."BOOK".price
+        ELSE (1 - public."DISCOUNT".value) * public."BOOK".price
     END AS "Nilai Bayar",
-    public."BOOK".main_price AS "Harga Buku",
+    public."BOOK".price AS "Harga Buku",
     CASE
         WHEN
             public."DISCOUNT".expire >= public."TRANSACTION".timestamp
@@ -45,8 +45,8 @@ SELECT
     END AS "Status Diskon"
     
     FROM public."TRANSACTION"
-    INNER JOIN public."FRANCHISE" ON
-    public."TRANSACTION"._franchise = public."FRANCHISE".franchise_key
+    INNER JOIN public."STOCK" ON
+    public."TRANSACTION"._stock = public."STOCK".stock_key
     INNER JOIN public."CUSTOMER" ON
     public."TRANSACTION"._customer = public."CUSTOMER".customer_key
     INNER JOIN public."PROFILE" ON
@@ -54,7 +54,7 @@ SELECT
     LEFT JOIN public."DISCOUNT" ON
     public."TRANSACTION"._discount = public."DISCOUNT".discount_key
     INNER JOIN public."BOOK" ON
-    public."TRANSACTION"._book = public."BOOK".book_key;
+    public."STOCK"._book = public."BOOK".book_key;
 
 -- @block
 -- See Employee Details

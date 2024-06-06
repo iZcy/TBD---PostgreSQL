@@ -1,7 +1,4 @@
 -- @block
-DELETE FROM public."TRANSACTION";
-
--- @block
 SELECT * FROM public."AUTHOR";
 
 -- @block
