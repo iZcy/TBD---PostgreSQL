@@ -10,7 +10,8 @@ const cors = require("cors");
 app.use(cors());
 
 app.use("/", require("./routes/root"));
-app.use("/test", require("./routes/testRoutes"));
+app.use("/test", require("./routes/test/testRoutes"));
+app.use("/transactions", require("./routes/public/transactionsRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);
