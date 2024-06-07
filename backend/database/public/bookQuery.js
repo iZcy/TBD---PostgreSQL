@@ -1,9 +1,9 @@
 const tables = require("../../config/tables");
 const db = require("../../config/connectDb");
 
-const getAllTransactions = async () =>
+const getAllBooks = async () =>
   new Promise((resolve, reject) => {
-    db.query(`SELECT * FROM ${tables.transaction.table}`, (err, results) => {
+    db.query(`SELECT * FROM ${tables.book.table}`, (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -12,11 +12,11 @@ const getAllTransactions = async () =>
     });
   });
 
-const getTransactionById = async (id) =>
+const getBookById = async (id) =>
   new Promise((resolve, reject) => {
     db.query(
       // custom limit
-      `SELECT * FROM ${tables.transaction.table} WHERE ${tables.transaction.primary} = $1 LIMIT 1`,
+      `SELECT * FROM ${tables.book.table} WHERE ${tables.book.primary} = $1 LIMIT 1`,
       [id],
       (err, results) => {
         if (err) {
@@ -28,4 +28,7 @@ const getTransactionById = async (id) =>
     );
   });
 
-module.exports = { getAllTransactions, getTransactionById };
+module.exports = {
+  getAllBooks,
+  getBookById
+};

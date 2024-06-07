@@ -11,7 +11,22 @@ app.use(cors());
 
 app.use("/", require("./routes/root"));
 app.use("/test", require("./routes/test/testRoutes"));
+app.use("/authors", require("./routes/public/authorRoutes"));
+app.use("/books", require("./routes/public/bookRoutes"));
+app.use("/locations", require("./routes/public/locationRoutes"));
+app.use("/contacts", require("./routes/public/contactRoutes"));
+app.use("/customers", require("./routes/public/customerRoutes"));
+app.use("/discounts", require("./routes/public/discountRoutes"));
+app.use("/distributors", require("./routes/public/distributorRoutes"));
+app.use("/employees", require("./routes/public/employeeRoutes"));
+app.use("/franchises", require("./routes/public/franchiseRoutes"));
+app.use("/positions", require("./routes/public/positionRoutes"));
+app.use("/profiles", require("./routes/public/profileRoutes"));
+app.use("/publishers", require("./routes/public/publisherRoutes"));
+app.use("/stocks", require("./routes/public/stockRoutes"));
 app.use("/transactions", require("./routes/public/transactionsRoutes"));
+app.use("/wishlists", require("./routes/public/wishlistRoutes"));
+app.use("/writtings", require("./routes/public/writtingsRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);

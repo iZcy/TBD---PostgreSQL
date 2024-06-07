@@ -1,10 +1,10 @@
-const transactionsQuery = require("../../database/public/transactionsQuery");
+const publisherQuery = require("../../database/public/publisherQuery");
 
-const getAllTransaction = async (req, res, next) => {
+const getAllPublishers = async (req, res, next) => {
   try {
     let data;
 
-    data = await transactionsQuery.getAllTransactions();
+    data = await publisherQuery.getAllPublishers();
 
     if (!data || data.length === 0) {
       res.status(404);
@@ -17,12 +17,12 @@ const getAllTransaction = async (req, res, next) => {
   }
 };
 
-const getTransactionById = async (req, res, next) => {
+const getPublisherById = async (req, res, next) => {
   try {
     const id = req.params.id;
     let data;
 
-    data = await transactionsQuery.getTransactionById(id);
+    data = await publisherQuery.getPublisherById(id);
 
     if (!data || data.length === 0) {
       res.status(404);
@@ -36,6 +36,6 @@ const getTransactionById = async (req, res, next) => {
 };
 
 module.exports = {
-  getAllTransaction,
-  getTransactionById
+  getAllPublishers,
+  getPublisherById
 };

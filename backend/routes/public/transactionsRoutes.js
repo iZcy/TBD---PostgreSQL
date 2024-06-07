@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const transactionsController = require("../../controllers/public/transactionsController");
+const transactionController = require("../../controllers/public/transactionController");
 
-router.get("/", transactionsController.getAllTransaction);
-router.get("/:id", transactionsController.getTransactionById);
+router.get("/", transactionController.getAllTransactions);
+router.get("/:id", transactionController.getTransactionById);
 
 module.exports = router;
