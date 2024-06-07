@@ -4,8 +4,19 @@ import { twMerge } from "tailwind-merge";
 import { AnyListedType } from "@/configs/extras";
 import { useGlobalContext } from "@/components/GlobalContext";
 
-export default function Table() {
-  const { usingData, usingInterface, dataLen } = useGlobalContext();
+export default function Table({
+  usingData,
+  usingInterface,
+  dataLen
+}: {
+  usingData: AnyListedType[];
+  usingInterface: {
+    name: string;
+    headers: string[];
+  };
+  dataLen: number;
+}) {
+  // const { usingData, usingInterface, dataLen } = useGlobalContext();
   const classTable: string =
     "px-[2vw] border-white border-[.2vw] tracking-wider";
 

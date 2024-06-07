@@ -7,7 +7,8 @@ import PickedData from "@/components/PickedData";
 import { useGlobalContext } from "@/components/GlobalContext";
 
 export default function TestPage() {
-  const { initFunction } = useGlobalContext();
+  const { initFunction, usingData, usingInterface, dataLen } =
+    useGlobalContext();
 
   useEffect(() => {
     initFunction();
@@ -20,7 +21,11 @@ export default function TestPage() {
       {/* PICKED DATA */}
       <PickedData />
       {/* TABLE DATA */}
-      <Table />
+      <Table
+        usingData={usingData}
+        usingInterface={usingInterface}
+        dataLen={dataLen}
+      />
     </div>
   );
 }
