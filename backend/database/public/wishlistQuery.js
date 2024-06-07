@@ -15,9 +15,38 @@ const getAllWishlists = async () =>
 const getWishlistById = async (id) =>
   new Promise((resolve, reject) => {
     db.query(
-      // custom limit
-      `SELECT * FROM ${tables.wishlist.table} WHERE ${tables.wishlist.primary} = $1 LIMIT 1`,
+      `SELECT * FROM ${tables.wishlist.table} WHERE ${tables.wishlist.primary} = $1`,
       [id],
+      (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
+const addWishlist = async (wishlist) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      `INSERT INTO ${tables.wishlist.table} (_customer, _book) VALUES ($1, $2)`,
+      [wishlist._customer, wishlist._book],
+      (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
+const deleteWishlist = async (cutomerId, bookId) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      `DELETE FROM ${tables.wishlist.table} WHERE _customer = $1 AND _book = $2`,
+      [cutomerId, bookId],
       (err, results) => {
         if (err) {
           reject(err);
@@ -30,5 +59,7 @@ const getWishlistById = async (id) =>
 
 module.exports = {
   getAllWishlists,
-  getWishlistById
+  getWishlistById,
+  addWishlist,
+  deleteWishlist
 };
