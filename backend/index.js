@@ -29,6 +29,9 @@ app.use("/stocks", require("./routes/public/stockRoutes"));
 app.use("/transactions", require("./routes/public/transactionsRoutes"));
 app.use("/wishlists", require("./routes/public/wishlistRoutes"));
 app.use("/writtings", require("./routes/public/writtingsRoutes"));
+
+app.use("/bigDb", require("./routes/package/bigDbRoute"));
+
 app.use("/views", require("./routes/viewsRoute"));
 
 app.all("*", (req, res) => {

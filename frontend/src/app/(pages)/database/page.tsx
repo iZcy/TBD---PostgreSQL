@@ -15,12 +15,15 @@ export default function TestPage() {
   }, [initFunction]);
 
   return (
-    <div className="flex flex-col gap-[10vh]">
-      {/* OPTIONS */}
-      <DataPicker />
-      {/* PICKED DATA */}
-      <PickedData />
+    <div className="flex flex-col items-center gap-[10vh] w-full p-[4vw]">
+      <div className="flex flex-col w-[50%] gap-[2vh]">
+        {/* OPTIONS */}
+        <DataPicker />
+        {/* PICKED DATA */}
+        <PickedData />
+      </div>
       {/* TABLE DATA */}
+
       <Table
         usingData={usingData}
         usingInterface={usingInterface}

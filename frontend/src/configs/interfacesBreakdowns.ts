@@ -8,7 +8,8 @@ export const interfacesBreakdowns = [
       _profile: "",
       joined_at: ""
     },
-    headers: ["Author Key", "Profile", "Joined At"]
+    headers: ["Author Key", "Profile", "Joined At"],
+    show: "author_key"
   },
   {
     index: 1,
@@ -28,7 +29,8 @@ export const interfacesBreakdowns = [
       "Publication Year",
       "Pages",
       "Price"
-    ]
+    ],
+    show: "name"
   },
   {
     index: 2,
@@ -50,7 +52,8 @@ export const interfacesBreakdowns = [
       "Instagram",
       "Whatsapp",
       "Line"
-    ]
+    ],
+    show: "phone"
   },
   {
     index: 3,
@@ -60,7 +63,8 @@ export const interfacesBreakdowns = [
       _profile: "",
       joined_at: ""
     },
-    headers: ["Customer Key", "Profile", "Joined At"]
+    headers: ["Customer Key", "Profile", "Joined At"],
+    show: "customer_key"
   },
   {
     index: 4,
@@ -70,7 +74,8 @@ export const interfacesBreakdowns = [
       name: "",
       local_price: 0
     },
-    headers: ["Distributor Key", "Name", "Local Price"]
+    headers: ["Distributor Key", "Name", "Local Price"],
+    show: "name"
   },
   {
     index: 5,
@@ -81,7 +86,8 @@ export const interfacesBreakdowns = [
       value: 0,
       expire: ""
     },
-    headers: ["Discount Key", "Code", "Value", "Expire"]
+    headers: ["Discount Key", "Code", "Value", "Expire"],
+    show: "code"
   },
   {
     index: 6,
@@ -99,7 +105,8 @@ export const interfacesBreakdowns = [
       "Position",
       "Franchise",
       "Recruited At"
-    ]
+    ],
+    show: "employee_key"
   },
   {
     index: 7,
@@ -111,7 +118,8 @@ export const interfacesBreakdowns = [
       _distributor: "",
       name: ""
     },
-    headers: ["Franchise Key", "Owner", "Location", "Distributor", "Name"]
+    headers: ["Franchise Key", "Owner", "Location", "Distributor", "Name"],
+    show: "name"
   },
   {
     index: 8,
@@ -123,7 +131,8 @@ export const interfacesBreakdowns = [
       city: "",
       street: ""
     },
-    headers: ["Location Key", "Country", "State", "City", "Street"]
+    headers: ["Location Key", "Country", "State", "City", "Street"],
+    show: "country"
   },
   {
     index: 9,
@@ -133,7 +142,8 @@ export const interfacesBreakdowns = [
       title: "",
       salary: 0
     },
-    headers: ["Position Key", "Title", "Salary"]
+    headers: ["Position Key", "Title", "Salary"],
+    show: "title"
   },
   {
     index: 10,
@@ -159,7 +169,8 @@ export const interfacesBreakdowns = [
       "Profession",
       "Date Born",
       "Date Death"
-    ]
+    ],
+    show: "full_name"
   },
   {
     index: 11,
@@ -170,7 +181,8 @@ export const interfacesBreakdowns = [
       _contact: "",
       year_founded: 0
     },
-    headers: ["Publisher Key", "Location", "Contact", "Year Founded"]
+    headers: ["Publisher Key", "Location", "Contact", "Year Founded"],
+    show: "publisher_key"
   },
   {
     index: 12,
@@ -180,7 +192,8 @@ export const interfacesBreakdowns = [
       _book: "",
       _franchise: ""
     },
-    headers: ["Stock Key", "Book", "Franchise"]
+    headers: ["Stock Key", "Book", "Franchise"],
+    show: "stock_key"
   },
   {
     index: 13,
@@ -200,7 +213,8 @@ export const interfacesBreakdowns = [
       "Discount",
       "Employee",
       "Timestamp"
-    ]
+    ],
+    show: "_transaction_key"
   },
   {
     index: 14,
@@ -209,7 +223,8 @@ export const interfacesBreakdowns = [
       _book: "",
       _author: ""
     },
-    headers: ["Book", "Author"]
+    headers: ["Book", "Author"],
+    show: "_book"
   },
   {
     index: 15,
@@ -218,7 +233,8 @@ export const interfacesBreakdowns = [
       _customer: "",
       _book: ""
     },
-    headers: ["Customer", "Book"]
+    headers: ["Customer", "Book"],
+    show: "_customer"
   },
   {
     index: 16,

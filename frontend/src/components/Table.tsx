@@ -21,42 +21,44 @@ export default function Table({
     "px-[2vw] border-white border-[.2vw] tracking-wider";
 
   return (
-    <table className="text-white">
-      <thead>
-        <tr>
-          <th className={classTable}>No</th>
-          {usingInterface &&
-            Object.entries(usingInterface.headers).map((key, idx) => (
-              <th key={idx} className={classTable}>
-                {key[1]}
-              </th>
-            ))}
-        </tr>
-      </thead>
-      <tbody className="gap-[5vh]">
-        {usingData && usingData.length === 0 ? (
+    <div className="w-full overflow-x-scroll px-[2vw]">
+      <table className="text-white">
+        <thead>
           <tr>
-            <td
-              colSpan={dataLen + 1}
-              className={twMerge("col-span-full", classTable, "text-center")}
-            >
-              Waiting for Process...
-            </td>
-          </tr>
-        ) : (
-          usingData &&
-          usingData.map((obj: AnyListedType, idx: number) => (
-            <tr key={"no_" + idx}>
-              <td className={classTable}>{idx + 1}</td>
-              {Object.entries(obj).map(([key, value]) => (
-                <td key={key} className={classTable}>
-                  {value}
-                </td>
+            <th className={classTable}>No</th>
+            {usingInterface &&
+              Object.entries(usingInterface.headers).map((key, idx) => (
+                <th key={idx} className={classTable}>
+                  {key[1]}
+                </th>
               ))}
+          </tr>
+        </thead>
+        <tbody className="gap-[5vh]">
+          {usingData && usingData.length === 0 ? (
+            <tr>
+              <td
+                colSpan={dataLen + 1}
+                className={twMerge("col-span-full", classTable, "text-center")}
+              >
+                Waiting for Process...
+              </td>
             </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+          ) : (
+            usingData &&
+            usingData.map((obj: AnyListedType, idx: number) => (
+              <tr key={"no_" + idx}>
+                <td className={classTable}>{idx + 1}</td>
+                {Object.entries(obj).map(([key, value]) => (
+                  <td key={key} className={classTable}>
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 }
