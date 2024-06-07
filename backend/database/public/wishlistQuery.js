@@ -57,9 +57,25 @@ const deleteWishlist = async (cutomerId, bookId) =>
     );
   });
 
+const checkWishlistExist = async (customerId, bookId) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      `SELECT * FROM ${tables.wishlist.table} WHERE _customer = $1 AND _book = $2`,
+      [customerId, bookId],
+      (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
 module.exports = {
   getAllWishlists,
   getWishlistById,
   addWishlist,
-  deleteWishlist
+  deleteWishlist,
+  checkWishlistExist
 };

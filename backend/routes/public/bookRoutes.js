@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const bookController = require("../../controllers/public/bookController");
-const makeBookAndWishlistController = require("../../controllers/package/makeBookAndWIshlistController");
+const sqlTransactionsController = require("../../controllers/package/sqlTransactionsController");
 
 router
   .post("/", bookController.addBook)
@@ -12,6 +12,6 @@ router
   .get("/:id", bookController.getBookById)
   .put("/:id", bookController.updateBook)
   .delete("/:id", bookController.deleteBook);
-router.post("/makeAndWish", makeBookAndWishlistController.makeBookAndWishlist);
+router.post("/makeAndWish", sqlTransactionsController.makeBookAndWishlist);
 
 module.exports = router;

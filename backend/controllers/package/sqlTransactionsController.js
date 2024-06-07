@@ -68,4 +68,71 @@ const makeBookAndWishlist = async (req, res, next) => {
   }
 };
 
+// const turnWishlistToBuyQuery = require("../../database/package/turnWishlistToBuyQuery");
+// const wishlistQuery = require("../../database/public/wishlistQuery");
+
+// const turnWishlistToBuy = async (req, res, next) => {
+//   try {
+//     // get the wishlist object from the request
+//     const wishlist = {
+//       _customer: req.params.customerId,
+//       _book: req.params.bookId
+//     };
+
+//     // ensure that the wishlist object is not null
+//     if (!wishlist) {
+//       res.status(400);
+//       throw new Error("Wishlist object is null");
+//     }
+
+//     // ensure the wishlist object is not empty
+//     if (Object.keys(wishlist).length === 0) {
+//       res.status(400);
+//       throw new Error("Wishlist object is empty");
+//     }
+
+//     // ensure the wishlist object doesn't have any invalid properties
+//     const validKeys = ["_customer", "_book"];
+//     const invalidKeys = Object.keys(wishlist).filter(
+//       (key) => !validKeys.includes(key)
+//     );
+//     if (invalidKeys.length > 0) {
+//       res.status(400);
+//       throw new Error(
+//         `Invalid wishlist fields provided for update: ${invalidKeys.join(", ")}`
+//       );
+//     }
+
+//     // ensure the wishlist object has all required properties
+//     if (!wishlist._customer || !wishlist._book) {
+//       res.status(400);
+//       throw new Error("Missing required wishlist fields");
+//     }
+
+//     // check if the wishlist exists
+//     const wishlistExists = await wishlistQuery.checkWishlistExist(
+//       wishlist._customer,
+//       wishlist._book
+//     );
+
+//     if (wishlistExists.rowCount === 0) {
+//       res.status(404);
+//       throw new Error("Wishlist does not exist");
+//     }
+
+//     // turn the wishlist into a buy
+//     const data = await turnWishlistToBuyQuery.turnWishlistToBuy(
+//       wishlist._customer,
+//       wishlist._book
+//     );
+
+//     // return a success message
+//     return res
+//       .status(200)
+//       .json({ message: "Wishlist was turned into a buy successfully" });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 module.exports = { makeBookAndWishlist };
