@@ -16,7 +16,7 @@ const pool = new Pool({
   port: PGPORT,
   ssl: {
     rejectUnauthorized: true,
-    ca: fs.readFileSync(path.join(__dirname, "..", "..", "ca.pem")).toString()
+    ca: fs.readFileSync(path.join(__dirname, "..", "ca.pem")).toString()
   }
 });
 
