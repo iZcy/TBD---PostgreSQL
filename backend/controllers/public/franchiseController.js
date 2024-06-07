@@ -1,9 +1,9 @@
 const franchiseQuery = require("../../database/public/franchiseQuery");
 
-const getAllFranchises = async (req, res) => {
+const getAllFranchises = async (req, res, next) => {
   try {
     const data = await franchiseQuery.getAllFranchises();
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Data not found");
     }
@@ -11,16 +11,15 @@ const getAllFranchises = async (req, res) => {
       data: data.rows
     });
   } catch (err) {
-    res.status(500);
-    throw new Error(err.message);
+    next(err);
   }
 };
 
-const getFranchiseById = async (req, res) => {
+const getFranchiseById = async (req, res, next) => {
   try {
     const id = req.params.id;
     const data = await franchiseQuery.getFranchiseById(id);
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Data not found");
     }
@@ -28,8 +27,7 @@ const getFranchiseById = async (req, res) => {
       data: data.rows
     });
   } catch (err) {
-    res.status(500);
-    throw new Error(err.message);
+    next(err);
   }
 };
 

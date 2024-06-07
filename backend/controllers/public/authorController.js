@@ -6,7 +6,7 @@ const getAllAuthors = async (req, res, next) => {
 
     data = await authorQuery.getAllAuthors();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getAuthorById = async (req, res, next) => {
 
     data = await authorQuery.getAuthorById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

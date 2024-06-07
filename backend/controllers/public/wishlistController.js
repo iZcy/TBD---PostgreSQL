@@ -6,7 +6,7 @@ const getAllWishlists = async (req, res, next) => {
 
     data = await wishlistQuery.getAllWishlists();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getWishlistById = async (req, res, next) => {
 
     data = await wishlistQuery.getWishlistById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

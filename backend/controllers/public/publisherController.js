@@ -6,7 +6,7 @@ const getAllPublishers = async (req, res, next) => {
 
     data = await publisherQuery.getAllPublishers();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getPublisherById = async (req, res, next) => {
 
     data = await publisherQuery.getPublisherById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

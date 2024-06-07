@@ -12,7 +12,7 @@ const testGetAllTransaction = async (req, res, next) => {
 
     data = await queryTest.getAllTransactions();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -30,7 +30,7 @@ const testGetTransactionById = async (req, res, next) => {
 
     data = await queryTest.getTransactionById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

@@ -6,7 +6,7 @@ const getAllContacts = async (req, res, next) => {
 
     data = await contactQuery.getAllContacts();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getContactById = async (req, res, next) => {
 
     data = await contactQuery.getContactById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

@@ -6,7 +6,7 @@ const getAllBooks = async (req, res, next) => {
 
     data = await bookQuery.getAllBooks();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getBookById = async (req, res, next) => {
 
     data = await bookQuery.getBookById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

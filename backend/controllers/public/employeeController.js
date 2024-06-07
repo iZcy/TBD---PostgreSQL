@@ -6,7 +6,7 @@ const getAllEmployees = async (req, res, next) => {
 
     data = await employeeQuery.getAllEmployees();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getEmployeeById = async (req, res, next) => {
 
     data = await employeeQuery.getEmployeeById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }

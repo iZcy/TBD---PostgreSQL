@@ -1,9 +1,9 @@
 const distributorQuery = require("../../database/public/distributorQuery");
 
-const getAllDistributors = async (req, res) => {
+const getAllDistributors = async (req, res, next) => {
   try {
     const data = await distributorQuery.getAllDistributors();
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Data not found");
     }
@@ -11,16 +11,15 @@ const getAllDistributors = async (req, res) => {
       data: data.rows
     });
   } catch (err) {
-    res.status(500);
-    throw new Error(err.message);
+    next(err);
   }
 };
 
-const getDistributorById = async (req, res) => {
+const getDistributorById = async (req, res, next) => {
   try {
     const id = req.params.id;
     const data = await distributorQuery.getDistributorById(id);
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Data not found");
     }
@@ -28,8 +27,7 @@ const getDistributorById = async (req, res) => {
       data: data.rows
     });
   } catch (err) {
-    res.status(500);
-    throw new Error(err.message);
+    next(err);
   }
 };
 

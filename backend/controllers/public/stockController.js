@@ -6,7 +6,7 @@ const getAllStocks = async (req, res, next) => {
 
     data = await stockQuery.getAllStocks();
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
@@ -24,7 +24,7 @@ const getStockById = async (req, res, next) => {
 
     data = await stockQuery.getStockById(id);
 
-    if (!data || data.length === 0) {
+    if (data.rowCount === 0) {
       res.status(404);
       throw new Error("Entah mengapa, data tidak ditemukan");
     }
