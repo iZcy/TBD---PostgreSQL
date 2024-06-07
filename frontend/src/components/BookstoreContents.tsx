@@ -91,83 +91,95 @@ export default function BookstoreContents() {
                 ))}
             </select>
           </div>
-          <div className="flex flex-col items-center h-fit">
-            {/* Customer Details */}
-            <h2>Customer Details</h2>
-            {pickedCustomer && (
-              <div>
-                {customerList
-                  .filter(
-                    (customer) => customer.customer_key === pickedCustomer
-                  )
-                  .map((customer, idx) => (
-                    <div key={idx}>
-                      <p>{`Full Name: ${customer.full_name}`}</p>
-                      <p>{`Nickname: ${customer.nickname}`}</p>
-                      <p>{`Profession: ${customer.profession}`}</p>
-                      <p>{`Date Born: ${customer.date_born}`}</p>
-                      <p>{`Date Death: ${customer.date_death}`}</p>
-                      <p>{`Gender: ${customer.gender}`}</p>
-                    </div>
-                  ))}
+          {pickedCustomer && pickedCustomer !== "empty" ? (
+            <>
+              <div className="flex flex-col items-center h-fit">
+                {/* Customer Details */}
+                <h2>Customer Details</h2>
+                {pickedCustomer && (
+                  <div>
+                    {customerList
+                      .filter(
+                        (customer) => customer.customer_key === pickedCustomer
+                      )
+                      .map((customer, idx) => (
+                        <div key={idx}>
+                          <p>{`Full Name: ${customer.full_name}`}</p>
+                          <p>{`Nickname: ${customer.nickname}`}</p>
+                          <p>{`Profession: ${customer.profession}`}</p>
+                          <p>{`Date Born: ${customer.date_born}`}</p>
+                          <p>{`Date Death: ${customer.date_death}`}</p>
+                          <p>{`Gender: ${customer.gender}`}</p>
+                        </div>
+                      ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-          <div className="flex flex-col items-center h-fit">
-            {/* Customer Wishlist */}
-            <h2>Customer Wishlist</h2>
-            <div className="w-full h-full overflow-y-scroll">
-              {booksInWishlist && booksInWishlist.length > 0 && (
-                <table className={twMerge("table-auto", tableClass)}>
-                  <thead>
-                    <tr>
-                      <th className={tableClass}>Book Name</th>
-                      <th className={tableClass}>Price</th>
-                      <th className={tableClass}>Publication Year</th>
-                      <th className={tableClass}>Pages</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {booksInWishlist.map((book, idx) => (
-                      <tr key={idx}>
-                        <td
-                          className={tableClass + " cursor-pointer"}
-                          onClick={() => {
-                            axios
-                              .delete(
-                                routersAPI.public.wishlists.delete(
-                                  pickedCustomer,
-                                  book.book_key
-                                )
-                              )
-                              .then(
-                                () => {
-                                  alert("Book removed from wishlist!");
-                                  // refresh the page
-                                  refetch(pickedCustomer);
-                                },
-                                () => {
-                                  alert("Failed to remove book from wishlist!");
-                                }
-                              );
-                          }}
-                        >
-                          {book.name}
-                        </td>
-                        <td className={tableClass}>{book.price}</td>
-                        <td className={tableClass}>{book.publication_year}</td>
-                        <td className={tableClass}>{book.pages}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
+              <div className="flex flex-col items-center h-fit">
+                {/* Customer Wishlist */}
+                <h2>Customer Wishlist (click the name to unwishlist)</h2>
+                <div className="w-full h-full overflow-y-scroll">
+                  {booksInWishlist && booksInWishlist.length > 0 && (
+                    <table className={twMerge("table-auto", tableClass)}>
+                      <thead>
+                        <tr>
+                          <th className={tableClass}>Book Name</th>
+                          <th className={tableClass}>Price</th>
+                          <th className={tableClass}>Publication Year</th>
+                          <th className={tableClass}>Pages</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {booksInWishlist.map((book, idx) => (
+                          <tr key={idx}>
+                            <td
+                              className={tableClass + " cursor-pointer"}
+                              onClick={() => {
+                                axios
+                                  .delete(
+                                    routersAPI.public.wishlists.delete(
+                                      pickedCustomer,
+                                      book.book_key
+                                    )
+                                  )
+                                  .then(
+                                    () => {
+                                      alert("Book removed from wishlist!");
+                                      // refresh the page
+                                      refetch(pickedCustomer);
+                                    },
+                                    () => {
+                                      alert(
+                                        "Failed to remove book from wishlist!"
+                                      );
+                                    }
+                                  );
+                              }}
+                            >
+                              {book.name}
+                            </td>
+                            <td className={tableClass}>{book.price}</td>
+                            <td className={tableClass}>
+                              {book.publication_year}
+                            </td>
+                            <td className={tableClass}>{book.pages}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col items-center h-fit">
+              <h2>No Customer Picked</h2>
             </div>
-          </div>
+          )}
         </div>
         <div className="flex flex-col items-center w-6/12 py-[2vh] h-full">
           {/* Get All the Available Books in a table*/}
-          <h2>Available Books</h2>
+          <h2>Available Books (click the name to wishlist)</h2>
           <div className="w-full h-full overflow-y-scroll">
             <table className={twMerge("table-auto", tableClass)}>
               <thead>
