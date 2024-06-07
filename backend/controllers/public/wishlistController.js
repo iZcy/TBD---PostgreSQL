@@ -85,7 +85,10 @@ const addWishlist = async (req, res, next) => {
 const deleteWishlist = async (req, res, next) => {
   try {
     // get the wishlist object from the request
-    const wishlist = req.body;
+    const wishlist = {
+      _customer: req.params.customerId,
+      _book: req.params.bookId
+    };
 
     // ensure that the wishlist object is not null
     if (!wishlist) {

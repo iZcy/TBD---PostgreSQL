@@ -16,7 +16,12 @@ export const routersAPI = {
     },
     books: {
       getAll: `${domain}/books`,
-      getOne: (id: string) => `${domain}/books/${id}`
+      getOne: (id: string) => `${domain}/books/${id}`,
+      update: (id: string) => `${domain}/books/${id}`,
+      delete: (id: string) => `${domain}/books/${id}`,
+      add: `${domain}/books`,
+      filter: `${domain}/books/find`,
+      makeAndWish: `${domain}/books/makeAndWish`
     },
     contacts: {
       getAll: `${domain}/contacts`,
@@ -24,6 +29,7 @@ export const routersAPI = {
     },
     customers: {
       getAll: `${domain}/customers`,
+      getFull: `${domain}/customers/full`,
       getOne: (id: string) => `${domain}/customers/${id}`
     },
     distributors: {
@@ -72,7 +78,10 @@ export const routersAPI = {
     },
     wishlists: {
       getAll: `${domain}/wishlists`,
-      getOne: (id: string) => `${domain}/wishlists/${id}`
+      getOne: (id: string) => `${domain}/wishlists/${id}`,
+      add: `${domain}/wishlists`,
+      delete: (idCust: string, idBook: string) =>
+        `${domain}/wishlists/${idCust}/${idBook}`
     }
   }
 };
