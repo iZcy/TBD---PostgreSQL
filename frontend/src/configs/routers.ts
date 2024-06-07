@@ -1,4 +1,7 @@
-export const domain = "http://localhost:5555";
+export const domain =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5555"
+    : "https://tbd-api.izcy.tech";
 export const routersAPI = {
   test: {
     transactions: {

@@ -132,7 +132,7 @@ export const interfacesBreakdowns = [
       street: ""
     },
     headers: ["Location Key", "Country", "State", "City", "Street"],
-    show: "country"
+    show: "street"
   },
   {
     index: 9,

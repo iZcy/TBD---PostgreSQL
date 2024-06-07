@@ -1,6 +1,6 @@
 "use client";
 import { useGlobalContext } from "./GlobalContext";
-import { AnyListedType } from "@/configs/extras";
+import { AnyListedType, CallbackType } from "@/configs/extras";
 import { interfacesBreakdowns } from "@/configs/interfacesBreakdowns";
 
 export default function DataPicker() {
@@ -8,8 +8,7 @@ export default function DataPicker() {
     availableTables,
     setUsingTable,
     usingData,
-    getSelfIdFunction,
-    setNullFunction,
+    usingCallback,
     usingIndex
   } = useGlobalContext();
 
@@ -54,12 +53,13 @@ export default function DataPicker() {
           // Get self value and pass it to the function
           onChange={(e) => {
             const value: string = e.target.value;
-            if (value !== "undefined") getSelfIdFunction(e.target.value);
-            else setNullFunction();
+            if (value !== "undefined") {
+              usingCallback.getSelfId(e.target.value);
+            } else usingCallback.setNull();
           }}
         >
           <option key={"_"} value={"undefined"}>
-            Pick a transaction
+            Pick a {usingIndex >= 0 ? availableTables[usingIndex] : "table"}
           </option>
           {usingData &&
             usingData.map((obj: AnyListedType, idx: number) => (

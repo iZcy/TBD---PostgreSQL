@@ -1,15 +1,16 @@
-"use client";
+import { Metadata } from "next";
 import React from "react";
-import { GlobalProvider } from "@/components/GlobalContext";
+import ContextProviderHugger from "@/components/ContextProviderHugger";
+
+export const metadata: Metadata = {
+  title: "Database | iZcy in TBD",
+  description: "Good Reading Bookstore's API (TBD Part B)"
+};
 
 export default function LayoutPages({
   children
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>
-      <GlobalProvider> {children}</GlobalProvider>
-    </div>
-  );
+  return <ContextProviderHugger>{children}</ContextProviderHugger>;
 }

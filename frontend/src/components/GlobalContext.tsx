@@ -1,25 +1,16 @@
 // MyContext.tsx
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useCallback,
+  useMemo
+} from "react";
 
-import { AnyListedType } from "@/configs/extras";
+import { GlobalContextType } from "@/configs/extras";
 
 // Define the shape of the context value
-interface GlobalContextType {
-  availableTables: string[];
-  usingTable: string;
-  setUsingTable: React.Dispatch<React.SetStateAction<string>>;
-  usingIndex: number;
-  usingData: AnyListedType[];
-  theDataPicker: AnyListedType | null;
-  usingInterface: {
-    name: string;
-    headers: string[];
-  };
-  initFunction: () => void;
-  getSelfIdFunction: (id: string) => void;
-  setNullFunction: () => void;
-  dataLen: number;
-}
 
 // Create a context with a default value of undefined
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
@@ -193,90 +184,101 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const usingInterface = interfacesBreakdowns[usingIndex];
   const dataLen: number = usingInterface?.headers.length || 0;
 
-  const callbacks = [
-    {
-      init: () => initAuthor(setAuthors),
-      getSelfId: (id: string) => getPickedAuthor(id, setPickedAuthor),
-      setNull: () => setPickedAuthor(null)
-    },
-    {
-      init: () => initBook(setBooks),
-      getSelfId: (id: string) => getPickedBook(id, setPickedBook),
-      setNull: () => setPickedBook(null)
-    },
-    {
-      init: () => initContact(setContacts),
-      getSelfId: (id: string) => getPickedContact(id, setPickedContact),
-      setNull: () => setPickedContact(null)
-    },
-    {
-      init: () => initCustomer(setCustomers),
-      getSelfId: (id: string) => getPickedCustomer(id, setPickedCustomer),
-      setNull: () => setPickedCustomer(null)
-    },
-    {
-      init: () => initDistributor(setDistributors),
-      getSelfId: (id: string) => getPickedDistributor(id, setPickedDistributor),
-      setNull: () => setPickedDistributor(null)
-    },
-    {
-      init: () => initDiscount(setDiscounts),
-      getSelfId: (id: string) => getPickedDiscount(id, setPickedDiscount),
-      setNull: () => setPickedDiscount(null)
-    },
-    {
-      init: () => initEmployee(setEmployees),
-      getSelfId: (id: string) => getPickedEmployee(id, setPickedEmployee),
-      setNull: () => setPickedEmployee(null)
-    },
-    {
-      init: () => initFranchise(setFranchises),
-      getSelfId: (id: string) => getPickedFranchise(id, setPickedFranchise),
-      setNull: () => setPickedFranchise(null)
-    },
-    {
-      init: () => initLocation(setLocations),
-      getSelfId: (id: string) => getPickedLocation(id, setPickedLocation),
-      setNull: () => setPickedLocation(null)
-    },
-    {
-      init: () => initPosition(setPositions),
-      getSelfId: (id: string) => getPickedPosition(id, setPickedPosition),
-      setNull: () => setPickedPosition(null)
-    },
-    {
-      init: () => initProfile(setProfiles),
-      getSelfId: (id: string) => getPickedProfile(id, setPickedProfile),
-      setNull: () => setPickedProfile(null)
-    },
-    {
-      init: () => initPublisher(setPublishers),
-      getSelfId: (id: string) => getPickedPublisher(id, setPickedPublisher),
-      setNull: () => setPickedPublisher(null)
-    },
-    {
-      init: () => initStock(setStocks),
-      getSelfId: (id: string) => getPickedStock(id, setPickedStock),
-      setNull: () => setPickedStock(null)
-    },
-    {
-      init: () => initTransaction(setTransactions),
-      getSelfId: (id: string) => getPickedTransaction(id, setPickedTransaction),
-      setNull: () => setPickedTransaction(null)
-    },
-    {
-      init: () => initWritting(setWrittings),
-      getSelfId: (id: string) => getPickedWritting(id, setPickedWritting),
-      setNull: () => setPickedWritting(null)
-    },
-    {
-      init: () => initWishlist(setWishlists),
-      getSelfId: (id: string) => getPickedWishlist(id, setPickedWishlist),
-      setNull: () => setPickedWishlist(null)
-    }
-  ];
+  const callbacks = useMemo(
+    () => [
+      {
+        init: () => initAuthor(setAuthors),
+        getSelfId: (id: string) => getPickedAuthor(id, setPickedAuthor),
+        setNull: () => setPickedAuthor(null)
+      },
+      {
+        init: () => initBook(setBooks),
+        getSelfId: (id: string) => getPickedBook(id, setPickedBook),
+        setNull: () => setPickedBook(null)
+      },
+      {
+        init: () => initContact(setContacts),
+        getSelfId: (id: string) => getPickedContact(id, setPickedContact),
+        setNull: () => setPickedContact(null)
+      },
+      {
+        init: () => initCustomer(setCustomers),
+        getSelfId: (id: string) => getPickedCustomer(id, setPickedCustomer),
+        setNull: () => setPickedCustomer(null)
+      },
+      {
+        init: () => initDistributor(setDistributors),
+        getSelfId: (id: string) =>
+          getPickedDistributor(id, setPickedDistributor),
+        setNull: () => setPickedDistributor(null)
+      },
+      {
+        init: () => initDiscount(setDiscounts),
+        getSelfId: (id: string) => getPickedDiscount(id, setPickedDiscount),
+        setNull: () => setPickedDiscount(null)
+      },
+      {
+        init: () => initEmployee(setEmployees),
+        getSelfId: (id: string) => getPickedEmployee(id, setPickedEmployee),
+        setNull: () => setPickedEmployee(null)
+      },
+      {
+        init: () => initFranchise(setFranchises),
+        getSelfId: (id: string) => getPickedFranchise(id, setPickedFranchise),
+        setNull: () => setPickedFranchise(null)
+      },
+      {
+        init: () => initLocation(setLocations),
+        getSelfId: (id: string) => getPickedLocation(id, setPickedLocation),
+        setNull: () => setPickedLocation(null)
+      },
+      {
+        init: () => initPosition(setPositions),
+        getSelfId: (id: string) => getPickedPosition(id, setPickedPosition),
+        setNull: () => setPickedPosition(null)
+      },
+      {
+        init: () => initProfile(setProfiles),
+        getSelfId: (id: string) => getPickedProfile(id, setPickedProfile),
+        setNull: () => setPickedProfile(null)
+      },
+      {
+        init: () => initPublisher(setPublishers),
+        getSelfId: (id: string) => getPickedPublisher(id, setPickedPublisher),
+        setNull: () => setPickedPublisher(null)
+      },
+      {
+        init: () => initStock(setStocks),
+        getSelfId: (id: string) => getPickedStock(id, setPickedStock),
+        setNull: () => setPickedStock(null)
+      },
+      {
+        init: () => initTransaction(setTransactions),
+        getSelfId: (id: string) =>
+          getPickedTransaction(id, setPickedTransaction),
+        setNull: () => setPickedTransaction(null)
+      },
+      {
+        init: () => initWritting(setWrittings),
+        getSelfId: (id: string) => getPickedWritting(id, setPickedWritting),
+        setNull: () => setPickedWritting(null)
+      },
+      {
+        init: () => initWishlist(setWishlists),
+        getSelfId: (id: string) => getPickedWishlist(id, setPickedWishlist),
+        setNull: () => setPickedWishlist(null)
+      }
+    ],
+    []
+  );
 
-  const usingCallback = callbacks[usingIndex];
+  const usingCallback = useMemo(() => {
+    if (usingIndex >= 0 && usingIndex < callbacks.length) {
+      callbacks[usingIndex].init();
+      return callbacks[usingIndex];
+    }
+    return { init: () => {}, getSelfId: () => {}, setNull: () => {} };
+  }, [usingIndex, callbacks]);
 
   return (
     <GlobalContext.Provider
@@ -288,9 +290,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         usingData,
         theDataPicker,
         usingInterface,
-        initFunction: usingCallback ? usingCallback.init : () => {},
-        getSelfIdFunction: usingCallback ? usingCallback.getSelfId : () => {},
-        setNullFunction: usingCallback ? usingCallback.setNull : () => {},
+        usingCallback,
         dataLen
       }}
     >
