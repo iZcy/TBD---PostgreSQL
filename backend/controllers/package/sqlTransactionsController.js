@@ -1,5 +1,6 @@
 const makeBookAndWishlistQuery = require("../../database/package/makeBookAndWishlistQuery");
 const bookQuery = require("../../database/public/bookQuery");
+const publisherQuery = require("../../database/public/publisherQuery");
 
 const makeBookAndWishlist = async (req, res, next) => {
   try {
@@ -52,6 +53,33 @@ const makeBookAndWishlist = async (req, res, next) => {
       throw new Error(
         `Wishlist object has invalid keys: ${invalidWishlistKeys.join(", ")}`
       );
+    }
+
+    // if the book doesnt have a publisher, set it to random publisher
+    if (!book._publisher) {
+      const publisherList = await publisherQuery.getAllPublishers();
+      const randomPublisher =
+        publisherList.rows[
+          Math.floor(Math.random() * publisherList.rows.length)
+        ];
+      book._publisher = randomPublisher.publisher_key;
+    }
+
+    // ensure the book and wishlist objects have all required properties
+    if (
+      !book._publisher ||
+      !book.name ||
+      !book.publication_year ||
+      !book.pages ||
+      !book.price
+    ) {
+      res.status(400);
+      throw new Error("Missing required book fields");
+    }
+
+    if (!wishlist._customer) {
+      res.status(400);
+      throw new Error("Missing required wishlist fields");
     }
 
     // make the book and wishlist

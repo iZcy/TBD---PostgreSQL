@@ -70,6 +70,17 @@ const addWishlist = async (req, res, next) => {
       throw new Error("Missing required wishlist fields");
     }
 
+    // ensure that the same wishlist doesn't already exist
+    const wishlistExists = await wishlistQuery.checkWishlistExist(
+      wishlist._customer,
+      wishlist._book
+    );
+
+    if (wishlistExists.rowCount > 0) {
+      res.status(400);
+      throw new Error("Wishlist already exists");
+    }
+
     // add the wishlist
     const data = await wishlistQuery.addWishlist(wishlist);
 
