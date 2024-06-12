@@ -30,7 +30,6 @@ const getBookById = async (id) =>
 
 const checkBookSameDataExist = async (book) =>
   new Promise((resolve, reject) => {
-    console.log(book);
     // Ignore publisher
     db.query(
       `SELECT * FROM ${tables.book.table} WHERE name = $1 AND publication_year = $2 AND pages = $3 AND price = $4`,

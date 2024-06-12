@@ -107,7 +107,6 @@ const addLocation = async (req, res, next) => {
       (key) => !validKeys.includes(key)
     );
     if (invalidKeys.length > 0) {
-      console.log(invalidKeys);
       res.status(400);
       throw new Error(
         `Invalid location fields provided for update: ${invalidKeys.join(", ")}`
