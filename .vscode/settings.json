@@ -1,21 +1,21 @@
 {
-    "sqltools.connections": [
-        {
-            "pgOptions": {
-                "ssl": {
-                    "rejectUnauthorized": true,
-                    "requestCert": false,
-                    "ca": "/home/izcy/Desktop/UGM/TBD - PostgreSQL/ca.pem"
-                }
-            },
-            "previewLimit": 50,
-            "server": "pg-db-ugm-project-postgre.h.aivencloud.com",
-            "port": 19290,
-            "driver": "PostgreSQL",
-            "name": "AivenPostgres",
-            "database": "grbs-db",
-            "username": "avnadmin",
-            "password": "AVNS_FSnpL5eBuYyf9q-e2Sk"
+  "sqltools.connections": [
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true,
+          "requestCert": false,
+          "ca": "/home/izcy/Desktop/UGM/TBD - PostgreSQL/ca.pem"
         }
-    ],
+      },
+      "previewLimit": 50,
+      "server": "pg-db-ugm-project-postgre.h.aivencloud.com",
+      "port": 19290,
+      "driver": "PostgreSQL",
+      "name": "AivenPostgres",
+      "database": "grbs-db",
+      "username": "avnadmin",
+      "password": "AVNS_FSnpL5eBuYyf9q-e2Sk"
+    }
+  ]
 }
